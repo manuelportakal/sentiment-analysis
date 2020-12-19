@@ -8,6 +8,7 @@
 @{
     var score = ViewBag.Score;
     var prediction = ViewBag.Prediction;
+    var secilenler = ViewBag.Secilenler;
 }
 <div class="row">
     <div class="col-md-4">
@@ -30,6 +31,18 @@
             @foreach (var item in score)
             {
                 <h3>@item</h3>
+            }
+
+        }
+    </div>
+    <div class="col-md-offset-4 col-md-4">
+        @if (secilenler != null)
+        {
+
+            <h3>Secilenler</h3>
+            @foreach (var item in secilenler)
+            {
+                <h4>@item</h4>
             }
 
         }

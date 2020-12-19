@@ -18,5 +18,6 @@ namespace BitirmeTezi.Models
         public string FearPoint { get; set; }
         public string JoyPoint { get; set; }
         public string Codepoints { get; set; }
+        public string Emo { get; set; }
     }
 }

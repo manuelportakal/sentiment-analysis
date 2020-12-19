@@ -76,6 +76,10 @@ namespace BitirmeTezi.Models
                 entity.Property(e => e.TemelGrup)
                     .HasMaxLength(255)
                     .HasColumnName("temel_grup");
+
+                entity.Property(e => e.Emo)
+                    .HasMaxLength(255)
+                    .HasColumnName("emo");
             });
 
             OnModelCreatingPartial(modelBuilder);
