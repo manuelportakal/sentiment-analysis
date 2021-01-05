@@ -23,7 +23,7 @@ namespace BitirmeTezi.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-UP0H539;Database=thesisDatabase;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Data Source=bitirmetezi.database.windows.net;Initial Catalog=thesisDatabase;User ID=yavuz;Password=Bitirmetezi123;");
             }
         }
 

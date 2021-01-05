@@ -25,7 +25,7 @@ namespace BitirmeTezi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Models.thesisDatabaseContext>(options =>
-        options.UseSqlServer("Server=DESKTOP-UP0H539;Database=thesisDatabase;Trusted_Connection=True;"));
+        options.UseSqlServer("Data Source=bitirmetezi.database.windows.net;Initial Catalog=thesisDatabase;User ID=yavuz;Password=Bitirmetezi123;"));
             services.AddMvc();
             services.AddControllersWithViews();
         }
