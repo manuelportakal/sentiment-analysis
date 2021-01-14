@@ -30,29 +30,37 @@ namespace BitirmeTezi.Controllers
         public IActionResult Index(ModelInput input)
         {
 
-            MLContext mlContext = new MLContext();
-            ITransformer mlModel = mlContext.Model.Load(@"..\BitirmeTeziML.Model\MLModel.zip", out var modelInputSchema);
-            var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
-            ModelOutput result = predEngine.Predict(input);
-            ModelOutput tmp_result = result;
-
-            for (int i = 0; i < tmp_result.Score.Length; i++)
+            try
             {
-                result.Score[i] = (float)Math.Round(tmp_result.Score[i], 4);
+                MLContext mlContext = new MLContext();
+                ITransformer mlModel = mlContext.Model.Load("./MLModel.zip", out var modelInputSchema);
+                var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
+                ModelOutput result = predEngine.Predict(input);
+                ModelOutput tmp_result = result;
+
+                for (int i = 0; i < tmp_result.Score.Length; i++)
+                {
+                    result.Score[i] = (float)Math.Round(tmp_result.Score[i], 4);
+                }
+
+
+                IDictionary<string, float> mydic = new Dictionary<string, float>();
+                String[] emotion = new String[6] { "sadness", "anger", "love", "surprise", "fear", "joy" };
+                for (int i = 0; i < emotion.Length; i++)
+                {
+                    mydic.Add(emotion[i], result.Score[i]);
+                }
+
+                ViewBag.Secilenler = findEmoji(mydic);
+                ViewBag.Score = mydic;
+                ViewBag.Prediction = result.Prediction;
+                return View();
+            }
+            catch (Exception)
+            {
+                return View();
             }
 
-
-            IDictionary<string, float> mydic = new Dictionary<string, float>();
-            String[] emotion = new String[6] { "sadness", "anger", "love", "surprise", "fear", "joy" };
-            for (int i = 0; i < emotion.Length; i++)
-            {
-                mydic.Add(emotion[i], result.Score[i]);
-            }
-
-            ViewBag.Secilenler = findEmoji(mydic);
-            ViewBag.Score = mydic;
-            ViewBag.Prediction = result.Prediction;
-            return View();
         }
 
         public List<string> findEmoji(IDictionary<string, float> mydic)

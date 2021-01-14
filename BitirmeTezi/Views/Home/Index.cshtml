@@ -1,51 +1,46 @@
 ﻿@model BitirmeTeziML.Model.ModelInput
 
-@{
-    ViewData["Title"] = "Emoji Tespit";
-}
+@{ ViewData["Title"] = "Emoji Tespit"; }
+<br />
 <h2>Emoji Tespiti</h2>
 <hr />
-@{
-    var score = ViewBag.Score;
+@{ var score = ViewBag.Score;
     var prediction = ViewBag.Prediction;
-    var secilenler = ViewBag.Secilenler;
-}
+    var secilenler = ViewBag.Secilenler; }
 <div class="row">
-    <div class="col-md-4">
+
+    <style type="text/css">
+        .ic_bolme {
+            float: left;
+            margin-right: 4px;
+        }
+    </style>
+   
+    <div class="col-md-6">
+        <br />
+        <label asp-for="Sentence" class="control-label"></label>
         <form asp-action="Index">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Sentence" class="control-label"></label>
-                <input asp-for="Sentence" class="form-control" />
+
+            <div class="form-group ic_bolme ">
+                <input asp-for="Sentence" class="form-control " width="1000" />
                 <span asp-validation-for="Sentence" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Check" class="btn btn-default" />
+            <div class="form-group ic_bolme">
+                <input type="submit" value="Check" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-    <div class="col-md-offset-4 col-md-4">
-        @if (score != null)
-        {
-            <h3>Tahmin:@prediction</h3>
-            @foreach (var item in score)
-            {
-                <h3>@item</h3>
-            }
 
-        }
+
     </div>
-    <div class="col-md-offset-4 col-md-4">
+    <div class="col-md-6">
         @if (secilenler != null)
         {
-
-            <h3>Secilenler</h3>
-            @foreach (var item in secilenler)
-            {
-                <h4>@item</h4>
-            }
-
-        }
+            <h4>Emojis</h4>
+            <hr />
+@foreach (var item in secilenler)
+{
+<h4>@item</h4>}}
     </div>
 </div>
 

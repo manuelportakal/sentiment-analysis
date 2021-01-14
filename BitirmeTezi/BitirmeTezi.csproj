@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>a8e16fa9-5509-45ca-947b-32ea898d2f38</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BitirmeTeziML.Model\BitirmeTeziML.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="MLModel.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
